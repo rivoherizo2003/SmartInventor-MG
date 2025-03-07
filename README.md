@@ -8,7 +8,7 @@
 
 ## About this project
 
-In this project we will setup phpstan, phpcs, php linter and test coverate, CI/CD 
+In this project we will setup phpstan, phpcs, php linter and test coverate, CI/CD
 
 ## phpstan command
 ```bash
