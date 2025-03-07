@@ -2,4 +2,4 @@
 
 - [ ] Setup phpstan
 - [ ] Test coverage
-- [ ] Git pre commit
+- [ ] Github action with lint.yml
