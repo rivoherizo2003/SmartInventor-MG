@@ -7,6 +7,10 @@ class TestPhpStan
     {
         //generate variable $testPhpStan
         $testPhpStan = 'testPhpStan';
+        if($testPhpStan == 'testPhpStan'){
+            //return variable $testPhpStan
+            return $testPhpStan;
+        }
         //return variable $testPhpStan
         return $testPhpStan;
     }
