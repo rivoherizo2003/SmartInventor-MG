@@ -12,8 +12,7 @@ class ExampleTest extends TestCase
     public function test_basic_test(): void
     {
         $a = 1;
-        $b = 2;
-        $c = $a + $b;
-        $this->assertTrue($a > 0);
+        $c = rand(1, 10);
+        $this->assertTrue($a < $c);
     }
 }
