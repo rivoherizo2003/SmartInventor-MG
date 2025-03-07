@@ -1,5 +1,5 @@
 # TODO List
 
-- [ ] Setup phpstan
+- [x] Setup phpstan
 - [ ] Test coverage
-- [ ] Github action with lint.yml
+- [x] Github action with workflow.yml
