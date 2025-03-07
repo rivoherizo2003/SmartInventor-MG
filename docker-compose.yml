@@ -1,0 +1,33 @@
+services:
+  mailer:
+    container_name: dopper_mailer
+    image: schickling/mailcatcher
+    ports:
+      - 10251:1025
+      - 10801:1080
+    networks:
+      - dopper_network
+      
+  db:
+    container_name: dopper_db
+    image: "postgres:12-alpine"
+    ports:
+      - "5437:5432"
+    environment:
+      POSTGRES_DB: dopper_db
+      POSTGRES_USER: dopper_db
+      POSTGRES_PASSWORD: 3vz3t7vj
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - dopper_network
+
+volumes:
+  db-data:
+  migration-sql:
+
+networks:
+  dopper_network:
+    name: dopper_network
+  

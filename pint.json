@@ -1,0 +1,13 @@
+{
+    "preset": "psr12",
+    "exclude": [
+        "bootstrap",
+        "config",
+        "database",
+        "public",
+        "routes",
+        "storage",
+        "tests",
+        "vendor"
+    ]
+}
