@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-readonly class HomeController extends Controller
+class HomeController extends Controller
 {
     public function index(): string
     {
