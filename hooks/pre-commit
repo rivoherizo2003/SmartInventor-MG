@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Hook pre-commit pour Laravel
+# Vérifie: Laravel/Pint (linting), PHPStan (analyse statique), PHPUnit (tests)
+
+# Variables de couleur pour la sortie
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+# Vérification si le script est exécuté dans un dépôt Git
+echo -e "${YELLOW}Lancement des vérifications pre-commit...${NC}"
+
+# Récupération des fichiers PHP modifiés
+PHP_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(php)$')
+
+if [ -z "$PHP_FILES" ]; then
+    echo -e "${GREEN}Aucun fichier PHP à vérifier.${NC}"
+    exit 0
+fi
+
+# Étape 1: Laravel/Pint (linting)
+echo -e "${YELLOW}Vérification du formatage avec Laravel Pint...${NC}"
+if ! php ./vendor/bin/pint --test; then
+    echo -e "${RED}Le formatage avec Laravel Pint a échoué.${NC}"
+    echo -e "Veuillez exécuter ${YELLOW}php ./vendor/bin/pint${NC} pour formater votre code avant de commiter."
+    exit 1
+fi
+echo -e "${GREEN}Formatage avec Laravel Pint validé.${NC}"
+
+# Étape 2: PHPStan (analyse statique)
+echo -e "${YELLOW}Vérification avec PHPStan...${NC}"
+if ! php ./vendor/bin/phpstan analyse; then
+    echo -e "${RED}L'analyse PHPStan a échoué.${NC}"
+    echo -e "Veuillez corriger les erreurs signalées par ${YELLOW}php ./vendor/bin/phpstan analyse${NC} avant de commiter."
+    exit 1
+fi
+echo -e "${GREEN}Analyse PHPStan validée.${NC}"
+
+# Étape 3: PHPUnit (tests)
+echo -e "${YELLOW}Exécution des tests PHPUnit...${NC}"
+if ! php ./vendor/bin/phpunit; then
+    echo -e "${RED}Les tests PHPUnit ont échoué.${NC}"
+    echo -e "Veuillez corriger les tests échoués avec ${YELLOW}php ./vendor/bin/phpunit${NC} avant de commiter."
+    exit 1
+fi
+echo -e "${GREEN}Tests PHPUnit validés.${NC}"
+
+echo -e "${GREEN}Toutes les vérifications sont passées avec succès!${NC}"
+exit 0
