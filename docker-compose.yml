@@ -1,33 +1,33 @@
 services:
   mailer:
-    container_name: dopper_mailer
+    container_name: smartinventor_mg_mailer
     image: schickling/mailcatcher
     ports:
       - 10251:1025
       - 10801:1080
     networks:
-      - dopper_network
-      
+      - smartinventor_mg_network
+
   db:
-    container_name: dopper_db
+    container_name: smartinventor_mg_db
     image: "postgres:12-alpine"
     ports:
       - "5437:5432"
     environment:
-      POSTGRES_DB: dopper_db
-      POSTGRES_USER: dopper_db
+      POSTGRES_DB: smartinventor_mg_db
+      POSTGRES_USER: smartinventor_mg_db
       POSTGRES_PASSWORD: 3vz3t7vj
       PGDATA: /var/lib/postgresql/data
     volumes:
       - db-data:/var/lib/postgresql/data
     networks:
-      - dopper_network
+      - smartinventor_mg_network
 
 volumes:
   db-data:
   migration-sql:
 
 networks:
-  dopper_network:
-    name: dopper_network
-  
+  smartinventor_mg_network:
+    name: smartinventor_mg_network
+
