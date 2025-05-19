@@ -13,3 +13,4 @@ parameters:
         - storage
         - config
         - vendor
+        - tests
