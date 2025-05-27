@@ -1,4 +1,4 @@
-@props(['activeTab'])
+{{-- @props(['activeTab']) --}}
 
 <div>
     <x-slot name="header">

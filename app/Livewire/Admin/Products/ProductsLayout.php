@@ -14,11 +14,6 @@ class ProductsLayout extends Component
         'navigateToProductTab',
         'productCreated' => 'handleProductCreated',
     ];
-
-    public function mount(string $activeTab = 'list'): void
-    {
-        $this->activeTab = $activeTab;
-    }
     
     public function navigateToProductTab(string $tabName): void
     {
