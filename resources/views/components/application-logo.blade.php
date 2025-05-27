@@ -1,1 +1,1 @@
-<img src="{{ asset('images/smg.png') }}" alt="SMG Logo" class="w-[316px]" />
+<img src="{{ asset('images/smg.png') }}" alt="SMG Logo" class="{{ $class }}" />
