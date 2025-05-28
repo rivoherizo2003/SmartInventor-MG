@@ -34,11 +34,7 @@ new class extends Component
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.products')" :active="request()->routeIs('admin.products')" wire:navigate>
-                        {{ __('Products') }}
-                    </x-nav-link>
-                </div> --}}
+                
                 <div class="hidden sm:flex sm:items-center sm:ms-10">
                     <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
                         <x-nav-link class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none cursor-pointer">

@@ -1,6 +1,8 @@
 <?php
 
 use App\Livewire\Admin\Products\CreateProduct;
+use App\Livewire\Admin\Products\DetailProduct;
+use App\Livewire\Admin\Products\EditProduct;
 use App\Livewire\Admin\Products\ListProducts;
 use App\Livewire\Admin\Products\ProductsLayout;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('list', ListProducts::class)
             ->middleware(['auth', 'verified'])
             ->name('list');
+        
+        Route::get('detail/{product}', DetailProduct::class)
+            ->middleware(['auth', 'verified'])
+            ->name('detail');
+
+        Route::get('edit/{product}', EditProduct::class)
+            ->middleware(['auth', 'verified'])
+            ->name('edit');
     });
 });
 
