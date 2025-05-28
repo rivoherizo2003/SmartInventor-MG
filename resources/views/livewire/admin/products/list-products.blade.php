@@ -1,3 +1,4 @@
+
 <div class="table-auto md:table-fixed border-collapse text-sm w-full">
     <table class="border-collapse border border-gray-100 w-full text-left">
         <thead class="bg-gray-200 dark:bg-gray-700">

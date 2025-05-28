@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Admin\Products\CreateProduct;
+use App\Livewire\Admin\Products\ListProducts;
 use App\Livewire\Admin\Products\ProductsLayout;
 use Illuminate\Support\Facades\Route;
 
@@ -11,16 +13,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-    Route::get('products', ProductsLayout::class)
-        ->middleware(['auth', 'verified'])
-        ->name('products');
-
     Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-        Route::view('create', 'livewire.admin.products.create-product')
+        Route::get('create', CreateProduct::class)
             ->middleware(['auth', 'verified'])
             ->name('create');
         
-        Route::view('list', 'livewire.admin.products.list-products')
+        Route::get('list', ListProducts::class)
             ->middleware(['auth', 'verified'])
             ->name('list');
     });

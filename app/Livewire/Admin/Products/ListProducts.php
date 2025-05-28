@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Products;
 
 use App\Models\Product;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,6 +13,7 @@ class ListProducts extends Component
 
     protected $paginationTheme = 'tailwind';
 
+    #[Layout("layouts.app")]
     public function render()
     {
         return view('livewire.admin.products.list-products', [

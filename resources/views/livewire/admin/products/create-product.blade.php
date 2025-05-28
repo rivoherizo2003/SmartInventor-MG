@@ -26,7 +26,7 @@
             <!-- Name -->
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
-                <input type="text" wire:model="name" id="name" 
+                <input type="text" wire:model="bnf_name" id="name" 
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                 @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
@@ -50,7 +50,7 @@
             <!-- Price -->
             <div>
                 <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Price</label>
-                <input type="number" step="0.01" wire:model="price" id="price" 
+                <input type="number" step="0.01" wire:model="act_cost" id="price" 
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                 @error('price') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
