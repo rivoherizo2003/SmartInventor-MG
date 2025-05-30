@@ -7,7 +7,7 @@
 **Objectif :** livrer une base utilisable rapidement.
 
 - [x] Authentification via Laravel Breeze ou Jetstream  
-- [ ] CRUD : Produits, Fournisseurs, Catégories  
+- [x] CRUD : Produits, Fournisseurs, Catégories  
 - [ ] Stock actuel par produit  
 - [ ] Mouvements d’inventaire (entrées/sorties)  
 - [ ] Alertes de stock bas simples  
