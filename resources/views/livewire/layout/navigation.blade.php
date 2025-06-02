@@ -67,6 +67,39 @@ new class extends Component
                         </div>
                     </div>
                 </div>
+                <!-- Inventory menu -->
+                <div class="hidden sm:flex sm:items-center sm:ms-10">
+                    <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                        <x-nav-link class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none cursor-pointer">
+                            <span>{{ __('Inventory Movements') }}</span>
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </x-nav-link>
+
+                        <div x-show="open"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="opacity-0 transform scale-95"
+                             x-transition:enter-end="opacity-100 transform scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="opacity-100 transform scale-100"
+                             x-transition:leave-end="opacity-0 transform scale-95"
+                             class="absolute z-50 mt-2 w-48 rounded-md shadow-lg origin-top-left left-0"
+                             style="display: none;"
+                             @click.away="open = false">
+                            <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
+                                <x-dropdown-link :href="route('admin.inventory.new_movement')" wire:navigate>
+                                    {{ __('New movement') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.inventory.list_movements')" wire:navigate>
+                                    {{ __('List movements') }}
+                                </x-dropdown-link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

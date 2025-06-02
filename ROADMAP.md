@@ -8,8 +8,8 @@
 
 - [x] Authentification via Laravel Breeze ou Jetstream  
 - [x] CRUD : Produits, Fournisseurs, Catégories  
-- [ ] Stock actuel par produit  
-- [ ] Mouvements d’inventaire (entrées/sorties)  
+- [x] Stock actuel par produit  
+- [ ] Mouvements d’inventaire (entrées/sorties)
 - [ ] Alertes de stock bas simples  
 - [ ] Dashboard de base (niveaux de stock, alertes)  
 
