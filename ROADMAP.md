@@ -1,7 +1,5 @@
 # ✅ Plan de développement - Inventory Manager SmartInventor-MG
 
-## Use TDD with lirewire
-
 ## 🚧 Phase 1 — MVP fonctionnel
 
 **Objectif :** livrer une base utilisable rapidement.
