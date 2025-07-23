@@ -13,7 +13,7 @@ class TestPhpStan
             return $testPhpStan;
         }
         $var = "ici";
-        if ($var == "i") {
+        if ($var == "iee") {
             return null;
         }
         //return variable $testPhpStan
