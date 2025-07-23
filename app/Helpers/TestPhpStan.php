@@ -12,6 +12,10 @@ class TestPhpStan
             //return variable $testPhpStan
             return $testPhpStan;
         }
+        $var = "ici";
+        if ($var == "i") {
+            return null;
+        }
         //return variable $testPhpStan
         return $testPhpStan;
     }
