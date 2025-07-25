@@ -3,16 +3,15 @@
 namespace App\Livewire\Admin\Products;
 
 use App\Livewire\Forms\Products\ProductForm;
-use App\Models\Product;
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CreateProduct extends Component
 {
     public ProductForm $productForm;
 
-    public function save()
+    public function save(): void
     {
         $this->productForm->create();
 
@@ -20,7 +19,7 @@ class CreateProduct extends Component
     }
 
     #[Layout("layouts.app")]
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.products.create-product');
     }

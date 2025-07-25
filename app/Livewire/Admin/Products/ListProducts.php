@@ -3,6 +3,8 @@
 namespace App\Livewire\Admin\Products;
 
 use App\Models\Product;
+use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,7 +13,7 @@ class ListProducts extends Component
 {
     use WithPagination;
 
-    protected $paginationTheme = 'tailwind';
+    protected string $paginationTheme = 'tailwind';
 
     public bool $showDeleteModal = false;
 
@@ -19,46 +21,51 @@ class ListProducts extends Component
 
     public ?string $productToDeleteName = '';
 
-    public $search_id = '';
-    public $search_code = '';
-    public $search_bnf_code = '';
-    public $search_bnf_name = '';
+    public string $search_id = '';
+    public string $search_code = '';
+    public string $search_bnf_code = '';
+    public string $search_bnf_name = '';
 
-    protected $queryString = [
+    /**
+     * The query string parameters for the search filters.
+     *
+     * @var array<string, array<string, string>>
+     */
+    protected array $queryString = [
         'search_id' => ['except' => ''],
         'search_code' => ['except' => ''],
         'search_bnf_code' => ['except' => ''],
         'search_bnf_name' => ['except' => '']
     ];
 
-    public function updatingSearch()
+    public function updatingSearch(): void
     {
         $this->resetPage();
     }
 
-    public function resetFilters()
+    public function resetFilters(): void
     {
         $this->reset(['search_id', 'search_code', 'search_bnf_code', 'search_bnf_name']);
         $this->resetPage();
     }
 
-    public function confirmDelete(int $productId, string $productName)
+    public function confirmDelete(int $productId, string $productName): void
     {
         $this->productIdToDelete = $productId;
         $this->productToDeleteName = $productName;
         $this->showDeleteModal = true;
     }
 
-    public function cancelDelete()
+    public function cancelDelete(): void
     {
         $this->showDeleteModal = false;
         $this->productIdToDelete = null;
         $this->productToDeleteName = '';
     }
 
-    public function deleteProduct()
+    public function deleteProduct(): void
     {
-        if(null === $this->productIdToDelete) {
+        if (null === $this->productIdToDelete) {
             session()->flash('error', 'Product not found.');
             $this->cancelDelete();
             return;
@@ -79,20 +86,23 @@ class ListProducts extends Component
     }
 
     #[Layout("layouts.app")]
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.products.list-products', [
             'products' => $this->getProducts()
         ]);
     }
 
-    public function getProducts()
+    /**
+     * @return LengthAwarePaginator<Product>
+     */
+    public function getProducts(): LengthAwarePaginator
     {
         return Product::query()
-                ->when($this->search_id, fn($query) => $query->where('id', 'like', '%' . $this->search_id . '%'))
-                ->when($this->search_code, fn($query) => $query->where('code', 'like', '%' . $this->search_code . '%'))
-                ->when($this->search_bnf_code, fn($query) => $query->where('bnf_code', 'like', '%' . $this->search_bnf_code . '%'))
-                ->when($this->search_bnf_name, fn($query) => $query->where('bnf_name', 'ilike', '%' . $this->search_bnf_name . '%'))
+                ->when($this->search_id, fn ($query) => $query->where('id', 'like', '%' . $this->search_id . '%'))
+                ->when($this->search_code, fn ($query) => $query->where('code', 'like', '%' . $this->search_code . '%'))
+                ->when($this->search_bnf_code, fn ($query) => $query->where('bnf_code', 'like', '%' . $this->search_bnf_code . '%'))
+                ->when($this->search_bnf_name, fn ($query) => $query->where('bnf_name', 'ilike', '%' . $this->search_bnf_name . '%'))
                 ->paginate(10);
     }
 }

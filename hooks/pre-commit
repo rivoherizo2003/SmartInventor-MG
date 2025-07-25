@@ -23,14 +23,20 @@ fi
 echo -e "${YELLOW}Vérification du formatage avec Laravel Pint...${NC}"
 if ! php ./vendor/bin/pint --test; then
     echo -e "${RED}Le formatage avec Laravel Pint a échoué.${NC}"
-    echo -e "Veuillez exécuter ${YELLOW}php ./vendor/bin/pint${NC} pour formater votre code avant de commiter."
+    echo -e "Execution de ${YELLOW}php ./vendor/bin/pint${NC} pour formater votre code avant de commiter."
+    php ./vendor/bin/pint
+    echo -e "${YELLOW}Veuillez vérifier les modifications apportées par Pint.${NC}"
+    echo -e "Si vous êtes satisfait des modifications, ajoutez-les avec ${YELLOW}git add .${NC} et recommencez le commit."
     exit 1
 fi
-echo -e "${GREEN}Formatage avec Laravel Pint validé.${NC}"
+
+if php ./vendor/bin/pint --test; then
+    echo -e "${GREEN}Formatage avec Laravel Pint validé.${NC}"
+fi
 
 # Étape 2: PHPStan (analyse statique)
 echo -e "${YELLOW}Vérification avec PHPStan...${NC}"
-if ! php ./vendor/bin/phpstan analyse; then
+if ! php ./vendor/bin/phpstan analyse --memory-limit=-1; then
     echo -e "${RED}L'analyse PHPStan a échoué.${NC}"
     echo -e "Veuillez corriger les erreurs signalées par ${YELLOW}php ./vendor/bin/phpstan analyse${NC} avant de commiter."
     exit 1

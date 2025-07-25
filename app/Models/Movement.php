@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Str;
 
 class Movement extends Model
 {
@@ -28,7 +27,10 @@ class Movement extends Model
         'movement_date' => 'datetime',
     ];
 
-    public function uniqueIds()
+    /**
+    * @return array<string>
+    */
+    public function uniqueIds(): array
     {
         return ['uuid'];
     }
